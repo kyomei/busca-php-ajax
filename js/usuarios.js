@@ -1,13 +1,13 @@
 $(document).ready(function () {
 
    // Busca os dados no banco ao pressiona a tecla
-   $("#input-search").keydown(function () {
+   $("#btn-search").click(function () {
       var search = $("#input-search").val();
-      buscar();
+      buscar(search);
    });
 
-   // Busca os dados sem parametro, pegando direito do seletor
-   function buscar()
+   // Busca o dados passando via parametro
+   function buscar(valor)
    {
       $.ajax({
          type: 'POST',
@@ -16,7 +16,7 @@ $(document).ready(function () {
          beforeSend: function () {
             $("#dados").html("Carregando...");
          },
-         data: {valor: $("#input-search").val()},
+         data: {valor: valor},
          success: function (result) {
             $("#dados").html(result);
          }
